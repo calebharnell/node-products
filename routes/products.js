@@ -21,4 +21,11 @@ router.post('/new', authenticate, (req, res) => {
   })
 });
 
-module.exports = router
+router.get('/delete/:id', (req, res) => {
+  let product = Product.findById(req.params.id);
+  product.remove().then(() => {
+    res.redirect('/products');
+  })
+});
+
+module.exports = router;
